@@ -536,7 +536,7 @@ function normalizeCategory(
         value === "languages" ||
         value === "programming languages"
     ) {
-        return "Languages";
+        return "Programming Languages";
     }
 
     if (
@@ -545,14 +545,14 @@ function normalizeCategory(
         value === "library" ||
         value === "libraries"
     ) {
-        return "Frameworks";
+        return "Frameworks & Libraries";
     }
 
     if (
         value === "tool" ||
         value === "tools"
     ) {
-        return "Tools";
+        return "Tools & Technologies";
     }
 
     if (
