@@ -39,6 +39,7 @@ const showSuccess = (title, text) => {
     });
 };
 
+
 const showError = (title, text) => {
     return Swal.fire({
         ...swalBase,
@@ -79,6 +80,7 @@ export default function CrudPage({
     transformBeforeSubmit,
     transformResponse,
     emptyMessage = "No records found.",
+    pageSize = 10,
 }) {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -91,6 +93,7 @@ export default function CrudPage({
         useState(null);
 
     const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [form, setForm] = useState({});
 
@@ -612,6 +615,35 @@ export default function CrudPage({
                 }
             );
         });
+
+    const totalPages = Math.max(
+        1,
+        Math.ceil(filteredItems.length / pageSize)
+    );
+
+    const safePage = Math.min(currentPage, totalPages);
+
+    const paginatedItems = filteredItems.slice(
+        (safePage - 1) * pageSize,
+        safePage * pageSize
+    );
+
+    const startItem = filteredItems.length > 0
+        ? (safePage - 1) * pageSize + 1
+        : 0;
+
+    const endItem = Math.min(
+        safePage * pageSize,
+        filteredItems.length
+    );
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search]);
+
+    useEffect(() => {
+        setCurrentPage((page) => Math.min(page, totalPages));
+    }, [totalPages]);
 
 
     // =================================================
@@ -1261,7 +1293,7 @@ export default function CrudPage({
 
             <DataTable
                 columns={columns}
-                data={filteredItems}
+                data={paginatedItems}
                 loading={loading}
                 onEdit={openEdit}
                 onDelete={
@@ -1273,6 +1305,44 @@ export default function CrudPage({
                     emptyMessage
                 }
             />
+
+            {filteredItems.length > 0 && (
+                <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-sm text-slate-400">
+                        Showing {startItem}–{endItem} of {filteredItems.length} skills
+                    </p>
+
+                    <div className="flex items-center gap-3">
+                        <button
+                            type="button"
+                            disabled={safePage === 1}
+                            onClick={() =>
+                                setCurrentPage((page) => Math.max(1, page - 1))
+                            }
+                            className="rounded-lg border border-white/10 px-4 py-2 text-sm text-white disabled:opacity-40"
+                        >
+                            Previous
+                        </button>
+
+                        <span className="whitespace-nowrap text-sm text-slate-300">
+                            Page {safePage} of {totalPages}
+                        </span>
+
+                        <button
+                            type="button"
+                            disabled={safePage === totalPages}
+                            onClick={() =>
+                                setCurrentPage((page) =>
+                                    Math.min(totalPages, page + 1)
+                                )
+                            }
+                            className="rounded-lg border border-white/10 px-4 py-2 text-sm text-white disabled:opacity-40"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+            )}
 
 
             {/* =========================================

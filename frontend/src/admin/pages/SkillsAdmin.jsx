@@ -9,6 +9,7 @@ export default function SkillsAdmin() {
             title="Skills"
             description="Manage your technical and professional skills."
             api={api}
+            pageSize={10}
             columns={[
                 {
                     key: "name",
@@ -74,30 +75,30 @@ export default function SkillsAdmin() {
                 },
 
                 {
-                    name: "category",
-                    label: "Category",
-                    type: "select",
-                    required: true,
-                    placeholder: "Select a category",
-                    options: [
-                        {
-                            label: "Programming Languages",
-                            value: "Programming Languages",
-                        },
-                        {
-                            label: "Frameworks & Libraries",
-                            value: "Frameworks & Libraries",
-                        },
-                        {
-                            label: "Tools & Technologies",
-                            value: "Tools & Technologies",
-                        },
-                        {
-                            label: "Soft Skills",
-                            value: "Soft Skills",
-                        },
-                    ],
-                },
+    name: "category",
+    label: "Category",
+    type: "select",
+    required: true,
+    placeholder: "Select a category",
+    options: [
+        {
+            label: "Programming Languages",
+            value: "Programming Languages",
+        },
+        {
+            label: "Frameworks & Libraries",
+            value: "Frameworks & Libraries",
+        },
+        {
+            label: "Tools & Technologies",
+            value: "Tools & Technologies",
+        },
+        {
+            label: "Soft Skills",
+            value: "Soft Skills",
+        },
+    ],
+},
 
                 {
                     name: "percentage",
