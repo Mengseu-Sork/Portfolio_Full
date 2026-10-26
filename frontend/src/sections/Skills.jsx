@@ -1,9 +1,9 @@
 import { Code2, Layers3 } from "lucide-react";
 
 const CATEGORY_ORDER = [
-    "Languages",
-    "Frameworks",
-    "Tools",
+    "Programming Languages",
+    "Frameworks & Libraries",
+    "Tools & Technologies",
     "Soft Skill",
 ];
 
@@ -430,21 +430,6 @@ function SkillCard({
                                     skill.name
                                 }
                             </h4>
-
-                            {skill.category && (
-                                <p
-                                    className="
-                                        mt-0.5
-                                        text-gray-500
-                                        text-sm
-                                        sm:text-lg
-                                    "
-                                >
-                                    {
-                                        skill.category
-                                    }
-                                </p>
-                            )}
 
                         </div>
                     </div>
