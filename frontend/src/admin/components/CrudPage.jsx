@@ -80,7 +80,7 @@ export default function CrudPage({
     transformBeforeSubmit,
     transformResponse,
     emptyMessage = "No records found.",
-    pageSize = 10,
+    pageSize = 6,
 }) {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);

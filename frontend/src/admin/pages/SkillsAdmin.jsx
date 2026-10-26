@@ -9,7 +9,7 @@ export default function SkillsAdmin() {
             title="Skills"
             description="Manage your technical and professional skills."
             api={api}
-            pageSize={10}
+            pageSize={6}
             columns={[
                 {
                     key: "name",
