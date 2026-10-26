@@ -167,7 +167,7 @@ export default function ProjectsAdmin() {
                             <div
                                 className="
                                     flex
-                                    max-w-[380px]
+                                    max-w-[400px]
                                     line-clamp-1
                                     flex-wrap
                                     gap-1.5
