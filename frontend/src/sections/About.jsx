@@ -189,9 +189,7 @@ export default function About({ profile }) {
                                     sm:text-base
                                     leading-7
                                     text-gray-400
-                                    md:text-lg
                                     sm:leading-8
-                                    md:leading-9
                                 "
                             >
                                 {profile?.bio ||
