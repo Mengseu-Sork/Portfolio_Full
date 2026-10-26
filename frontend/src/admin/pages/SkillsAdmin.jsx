@@ -76,7 +76,27 @@ export default function SkillsAdmin() {
                 {
                     name: "category",
                     label: "Category",
-                    placeholder: "Backend",
+                    type: "select",
+                    required: true,
+                    placeholder: "Select a category",
+                    options: [
+                        {
+                            label: "Programming Languages",
+                            value: "Programming Languages",
+                        },
+                        {
+                            label: "Frameworks & Libraries",
+                            value: "Frameworks & Libraries",
+                        },
+                        {
+                            label: "Tools & Technologies",
+                            value: "Tools & Technologies",
+                        },
+                        {
+                            label: "Soft Skills",
+                            value: "Soft Skills",
+                        },
+                    ],
                 },
 
                 {
