@@ -13,7 +13,7 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::query()
-            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return SkillResource::collection($skills);

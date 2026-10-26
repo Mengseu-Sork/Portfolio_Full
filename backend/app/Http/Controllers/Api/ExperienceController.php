@@ -14,7 +14,7 @@ class ExperienceController extends Controller
         $experiences = Experience::query()
             ->orderByDesc('is_current')
             ->orderByDesc('start_date')
-            ->orderBy('sort_order')
+            ->orderBy('id', 'desc')
             ->get();
 
         return ExperienceResource::collection($experiences);

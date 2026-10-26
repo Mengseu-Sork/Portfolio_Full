@@ -17,7 +17,7 @@ class ServiceController extends Controller
     {
         $services = Service::query()
             ->where('is_active', true)
-            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return ServiceResource::collection($services);

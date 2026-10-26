@@ -14,7 +14,7 @@ class CertificateController extends Controller
     {
         $certificates = Certificate::query()
             ->orderByDesc('issue_date')
-            ->orderBy('sort_order')
+            ->orderBy('id', 'desc')
             ->get();
 
         return CertificateResource::collection($certificates);

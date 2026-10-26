@@ -18,12 +18,10 @@ class ProjectController extends Controller
     {
         $projects = Project::query()
             ->where('is_active', true)
-            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
-        return ProjectResource::collection(
-            $projects
-        );
+        return ProjectResource::collection($projects);
     }
 
     public function show(Project $project)

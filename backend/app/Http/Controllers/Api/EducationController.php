@@ -12,7 +12,7 @@ class EducationController extends Controller
     public function index()
     {
         $educations = Education::query()
-            ->orderBy('sort_order')
+            ->orderBy('id', 'desc')
             ->orderByDesc('end_date')
             ->get();
 

@@ -14,7 +14,7 @@ class SocialLinkController extends Controller
     {
         $links = SocialLink::query()
             ->where('is_active', true)
-            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return SocialLinkResource::collection(
