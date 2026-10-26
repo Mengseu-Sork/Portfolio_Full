@@ -962,47 +962,37 @@ export default function CrudPage({
                         }
                     />
 
-                ) : field.type ===
-                    "select" ? (
-
+                ) : field.type === "select" ? (
                     <select
                         value={value}
                         onChange={(e) =>
-                            handleChange(
-                                field.name,
-                                e.target.value
-                            )
+                            handleChange(field.name, e.target.value)
                         }
-                        required={
-                            field.required
-                        }
-                        className={
-                            commonClass
-                        }
+                        required={field.required}
+                        className={commonClass}
                     >
-                        <option value="">
-                            Select...
+                        <option
+                            value=""
+                            style={{
+                                color: "#0f172a",
+                                backgroundColor: "#ffffff",
+                            }}
+                        >
+                            {field.placeholder || "Select..."}
                         </option>
 
-                        {(
-                            field.options ||
-                            []
-                        ).map(
-                            (option) => (
-                                <option
-                                    key={
-                                        option.value
-                                    }
-                                    value={
-                                        option.value
-                                    }
-                                >
-                                    {
-                                        option.label
-                                    }
-                                </option>
-                            )
-                        )}
+                        {(field.options || []).map((option) => (
+                            <option
+                                key={option.value}
+                                value={option.value}
+                                style={{
+                                    color: "#0f172a",
+                                    backgroundColor: "#ffffff",
+                                }}
+                            >
+                                {option.label}
+                            </option>
+                        ))}
                     </select>
 
                 ) : field.type ===
