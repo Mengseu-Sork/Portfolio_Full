@@ -63,62 +63,61 @@ export default function Navbar({ profile }) {
             return;
         }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visibleSections =
-                    entries
-                        .filter(
-                            (entry) =>
-                                entry.isIntersecting
-                        )
-                        .sort(
-                            (a, b) =>
-                                b.intersectionRatio -
-                                a.intersectionRatio
-                        );
+        const updateActiveSection = () => {
+            // Activate a section when its top reaches
+            // approximately 35% of the viewport height.
+            const activationPoint =
+                window.scrollY + window.innerHeight * 0.35;
 
-                if (
-                    visibleSections.length > 0
-                ) {
-                    setActiveSection(
-                        visibleSections[0].target.id
-                    );
+            let currentSection = sections[0].id;
+
+            sections.forEach((section) => {
+                const sectionTop =
+                    section.getBoundingClientRect().top +
+                    window.scrollY;
+
+                if (sectionTop <= activationPoint) {
+                    currentSection = section.id;
                 }
-            },
-            {
-                root: null,
+            });
 
-                /*
-                 * Navbar height compensation.
-                 */
-                rootMargin:
-                    "-25% 0px -55% 0px",
+            setActiveSection(currentSection);
+        };
 
-                threshold: [
-                    0,
-                    0.1,
-                    0.25,
-                    0.5,
-                    0.75,
-                    1,
-                ],
-            }
+        window.addEventListener(
+            "scroll",
+            updateActiveSection,
+            { passive: true }
         );
 
-        sections.forEach((section) => {
-            observer.observe(section);
-        });
+        window.addEventListener(
+            "resize",
+            updateActiveSection
+        );
+
+        window.addEventListener(
+            "hashchange",
+            updateActiveSection
+        );
+
+        // Set the correct active section on page load.
+        updateActiveSection();
 
         return () => {
-            sections.forEach(
-                (section) => {
-                    observer.unobserve(
-                        section
-                    );
-                }
+            window.removeEventListener(
+                "scroll",
+                updateActiveSection
             );
 
-            observer.disconnect();
+            window.removeEventListener(
+                "resize",
+                updateActiveSection
+            );
+
+            window.removeEventListener(
+                "hashchange",
+                updateActiveSection
+            );
         };
     }, []);
 
