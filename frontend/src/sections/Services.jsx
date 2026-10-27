@@ -35,17 +35,16 @@ export default function Services({
                                     }
                                     className="group rounded-3xl border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-pink-500/40 hover:shadow-2xl hover:shadow-purple-900/20"
                                 >
-                                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 text-pink-400">
-                                        {renderIcon(
-                                            service.icon
-                                        )}
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 text-pink-400">
+                                            {renderIcon(service.icon)}
+                                        </div>
+
+                                        <h3 className="text-lg font-bold text-white sm:text-xl">
+                                            {service.title}
+                                        </h3>
                                     </div>
 
-                                    <h3 className="mt-7 text-lg sm:text-xl font-bold text-white">
-                                        {
-                                            service.title
-                                        }
-                                    </h3>
 
                                     {service.short_description && (
                                         <p className="mt-4 leading-7 text-sm sm:text-base text-gray-300">
